@@ -6,5 +6,6 @@ namespace PetShop_BackEnd.Models
         public string? name{get; set;}
         public double? price{get; set;}
         public string? description{get; set;}
+        public string? url_image{get; set;}
     }
 }
