@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using PetShop_BackEnd.Models;
-using PetShop_BackEnd.Helpers;
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
