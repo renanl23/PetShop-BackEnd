@@ -11,5 +11,11 @@ namespace PetShop_BackEnd.Models
         }
 
         public DbSet<Product> Products { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Product>().HasKey(m => m.id);
+            base.OnModelCreating(builder);
+        }
     }
 }

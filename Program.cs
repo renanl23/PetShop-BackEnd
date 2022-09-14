@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PetShop_BackEnd.Models;
+using PetShop_BackEnd.Helpers;
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,11 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
 builder.Services.AddDbContext<LoginContext>(opt =>
-    opt.UseInMemoryDatabase("Login"));
+    opt.UseSqlite(connectionString));
 builder.Services.AddDbContext<ProductContext>(opt =>
-    opt.UseInMemoryDatabase("Produto"));
+    opt.UseSqlite(connectionString));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
