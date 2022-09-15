@@ -1,18 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 namespace PetShop_BackEnd.Models
 {
-    public class LoginContext : DbContext
+    public class UsuarioContext : DbContext
     {
-        public LoginContext(DbContextOptions<LoginContext> options)
+        public UsuarioContext(DbContextOptions<UsuarioContext> options)
             : base(options)
         {
         }
 
-        public DbSet<LoginItem> LoginItems { get; set; } = null!;
+        public DbSet<Usuario> Usuarios { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<LoginItem>().HasKey(m => m.Id);
+            builder.Entity<Usuario>().HasKey(m => m.id);
             base.OnModelCreating(builder);
         }
     }

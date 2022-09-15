@@ -6,31 +6,34 @@ using PetShop_BackEnd.Models;
 
 #nullable disable
 
-namespace PetShop_BackEnd.Migrations.Login
+namespace PetShop_BackEnd.Migrations.Usuario
 {
-    [DbContext(typeof(LoginContext))]
-    partial class LoginContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UsuarioContext))]
+    partial class UsuarioContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
 
-            modelBuilder.Entity("PetShop_BackEnd.Models.LoginItem", b =>
+            modelBuilder.Entity("PetShop_BackEnd.Models.Usuario", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("password")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("tipo")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("username")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("LoginItems");
+                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

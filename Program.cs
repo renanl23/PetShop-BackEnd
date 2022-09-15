@@ -17,9 +17,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
-builder.Services.AddDbContext<LoginContext>(opt =>
-    opt.UseSqlite(connectionString));
 builder.Services.AddDbContext<ProductContext>(opt =>
+    opt.UseSqlite(connectionString));
+builder.Services.AddDbContext<UsuarioContext>(opt =>
     opt.UseSqlite(connectionString));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
