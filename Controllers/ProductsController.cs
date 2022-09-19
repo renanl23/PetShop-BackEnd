@@ -22,8 +22,14 @@ namespace PetShop_BackEnd.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromHeader] UsuarioHeaders usuarioHeaders)
         {
+        
+        if (usuarioHeaders.username is null) {
+            Console.WriteLine("Sem log");
+        } else {
+            Console.WriteLine("Com log"+usuarioHeaders.username);
+        }
           if (_context.Products == null)
           {
               return NotFound();
