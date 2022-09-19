@@ -104,11 +104,11 @@ namespace PetShop_BackEnd.Controllers
             }
 
             // UsuarioAuth
-            if (!UsuarioAuth(usuario.username, usuario.password))
-                return NotFound(new { message = "Usuário ou senha inválidos" });
+            (bool retornoAuth, Usuario retornoUsuario) = UsuarioAuth(usuario.username, usuario.password);
+            if (!retornoAuth)
+                return NotFound(new { message = "Usuário ou senha inválidos" });                        
             
-            return NoContent();
-
+            return Ok(retornoUsuario);
         }
 
         // DELETE: api/Usuario/5
@@ -136,9 +136,26 @@ namespace PetShop_BackEnd.Controllers
             return (_context.Usuarios?.Any(e => e.id == id)).GetValueOrDefault();
         }
 
-        private bool UsuarioAuth(string username,string password)
+        private (bool, Usuario) UsuarioAuth(string username,string password)
         {
-            return (_context.Usuarios?.Any(e => e.password == password && e.username == username)).GetValueOrDefault();
+            var usuarioAuth = false;
+            Usuario usuarioRetorno = new Usuario {
+                id = 0
+                };
+
+            var usuarioSelect = _context.Usuarios
+            .Where(usuario => usuario.username == username && usuario.password == password)
+            .Select(usuario => new Usuario {
+                id = usuario.id,
+                name = usuario.name,
+                username = usuario.username,
+                tipo = usuario.tipo
+            }).ToList();
+            if (usuarioSelect.Count > 0){
+                usuarioAuth = true;
+                usuarioRetorno = usuarioSelect[0]; 
+            }                       
+            return (usuarioAuth, usuarioRetorno);
         }
     }
 }
