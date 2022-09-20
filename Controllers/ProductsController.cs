@@ -62,6 +62,12 @@ namespace PetShop_BackEnd.Controllers
                 return NotFound();
             }
 
+            if (usuarioHeaders.username == null) {
+                        await LogProduct("GetProduct"+"/"+product.id,"Anonimo", true);
+            } else {
+                await LogProduct("GetProduct"+"/"+product.id,usuarioHeaders.username, true);
+            }
+            
             return product;
         }
 
