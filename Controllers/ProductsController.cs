@@ -171,6 +171,7 @@ namespace PetShop_BackEnd.Controllers
             return (_context.Products?.Any(e => e.id == id)).GetValueOrDefault();
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public async Task LogProduct(string acao, string username, bool permitido)
         {
             _logcontext.Logs.Add(
